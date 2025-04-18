@@ -50,7 +50,7 @@ bot.on('voice', async (ctx) => {
         ffmpeg(inputPath)
             .input(minusPath) // Минус
             .complexFilter([
-                '[0:a][1:a]amix=inputs=2:duration=first:dropout_transition=3[a]',
+                '[1:a]volume=0.5[minus];[0:a][minus]amix=inputs=2:duration=first:dropout_transition=3[a]'
             ])
             .outputOptions([
                 '-map [a]',           // Использовать смешанный трек
