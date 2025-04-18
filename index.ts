@@ -16,6 +16,7 @@ if (!API_KEY) {
 
 const bot = new Telegraf(API_KEY as string);
 
+ffmpeg.setFfmpegPath('/usr/bin/ffmpeg')
 bot.start((ctx) => ctx.reply('Привет, я твой бот! Детей нахуй, стариков в пизду, остальных в изоляторы.'));
 
 bot.command('prof', (ctx) => {

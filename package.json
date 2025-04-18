@@ -2,7 +2,7 @@
   "name": "krvostok-bot",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "start": "npx ts-node index.ts",
     "build": "npx tsc",
     "dev": "npx ts-node index.ts"
@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "axios": "^1.7.9",
     "dotenv": "^16.5.0",
     "fluent-ffmpeg": "^2.1.3",
