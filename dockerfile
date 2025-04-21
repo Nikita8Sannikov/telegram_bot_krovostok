@@ -1,18 +1,26 @@
 FROM node:18-alpine
-# 1. Устанавливаем FFmpeg и создаём симлинки
+
+# Установка FFmpeg
 RUN apk add --no-cache ffmpeg && \
-    ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg && \
-    ln -s /usr/bin/ffprobe /usr/local/bin/ffprobe
-# 2. Проверяем установку
-RUN ffmpeg -version && which ffmpeg
+    ln -s /usr/bin/ffmpeg /usr/local/bin/ffmpeg
 
+# Создаем и настраиваем рабочую директорию
 WORKDIR /app
-# 3. Копируем зависимости и устанавливаем их
-COPY package*.json ./
-RUN npm install --include=dev && \
-    npm run build && \
-    npm prune --omit=dev
 
+# 1. Копируем только lock-файлы (если есть) и package.json
+COPY package*.json ./
+
+# 2. Устанавливаем зависимости
+RUN npm install
+
+# 3. Копируем ВСЕ файлы проекта
 COPY . .
-# 5. Явно указываем команду запуска
+
+# 4. Собираем проект
+RUN npm run build
+
+# 5. Проверяем что файлы на месте
+RUN ls -la dist/
+
+# 6. Запускаем
 CMD ["node", "dist/index.js"]
