@@ -4,12 +4,11 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
-
-import { randProf } from '../utils/utils';
+import { randProf } from './utils/utils';
 
 console.log('Проверка файлов в dist:');
 console.log(fs.readdirSync(__dirname));
-console.log('Путь к index.js:', __filename);
+console.log('Текущий путь:', __dirname);
 
 dotenv.config();
 const API_KEY = process.env.TELEGRAM_BOT_TOKEN;

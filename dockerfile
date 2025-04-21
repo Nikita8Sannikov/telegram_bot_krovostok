@@ -10,17 +10,14 @@ WORKDIR /app
 # 1. Копируем только lock-файлы (если есть) и package.json
 COPY package*.json ./
 
-# 2. Устанавливаем зависимости
-RUN npm install
+# 2. Ставим зависимости и собираем проект
+RUN npm install && npm run build
 
-# 3. Копируем ВСЕ файлы проекта
-COPY . .
-
-# 4. Собираем проект
-RUN npm run build
-
-# 5. Проверяем что файлы на месте
+# 3. Проверяем что собралось
 RUN ls -la dist/
 
-# 6. Запускаем
+# 4. Копируем ВСЕ файлы проекта
+COPY . .
+
+# 5. Запускаем
 CMD ["node", "dist/index.js"]
