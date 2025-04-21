@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node index.ts",
-    "build": "npx tsc",
-    "dev": "npx ts-node index.ts"
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "ts-node index.ts"
   },
   "keywords": [],
   "author": "Nikita Sannikov",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/fluent-ffmpeg": "^2.1.27",
     "@types/node": "^22.10.6",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
 }
