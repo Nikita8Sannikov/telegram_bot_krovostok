@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
-import { randProf } from './utils/utils';
+import { randProf } from '../utils/utils';
 
 // Проверка FFmpeg
 console.log('FFmpeg path:', ffmpegPath);
