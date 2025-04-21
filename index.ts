@@ -4,7 +4,16 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
+import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import { randProf } from './utils/utils';
+
+// Проверка FFmpeg
+console.log('FFmpeg path:', ffmpegPath);
+ffmpeg.setFfmpegPath(ffmpegPath);  // Используем путь из @ffmpeg-installer
+
+// Дополнительная проверка
+import { execSync } from 'child_process';
+console.log('System FFmpeg:', execSync('which ffmpeg').toString());
 
 dotenv.config();
 const API_KEY = process.env.TELEGRAM_BOT_TOKEN;
@@ -16,7 +25,6 @@ if (!API_KEY) {
 
 const bot = new Telegraf(API_KEY as string);
 
-ffmpeg.setFfmpegPath('/usr/bin/ffmpeg')
 bot.start((ctx) => ctx.reply('Привет, я твой бот! Детей нахуй, стариков в пизду, остальных в изоляторы.'));
 
 bot.command('prof', (ctx) => {
